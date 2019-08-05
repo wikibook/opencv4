@@ -1,0 +1,77 @@
+C:\Users\07692\source\repos\Project\Project\bin\Debug\dll\x86\OpenCvSharpExtern.dll
+C:\Users\07692\source\repos\Project\Project\bin\Debug\dll\x86\opencv_ffmpeg410.dll
+C:\Users\07692\source\repos\Project\Project\bin\Debug\dll\x64\OpenCvSharpExtern.dll
+C:\Users\07692\source\repos\Project\Project\bin\Debug\dll\x64\opencv_ffmpeg410_64.dll
+C:\Users\07692\source\repos\Project\Project\bin\Debug\Project.exe.config
+C:\Users\07692\source\repos\Project\Project\bin\Debug\Project.exe
+C:\Users\07692\source\repos\Project\Project\bin\Debug\Project.pdb
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.Blob.dll
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.dll
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.Extensions.dll
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.UserInterface.dll
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.pdb
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.xml
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.Blob.pdb
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.Blob.xml
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.Extensions.pdb
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.Extensions.xml
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.UserInterface.pdb
+C:\Users\07692\source\repos\Project\Project\bin\Debug\OpenCvSharp.UserInterface.xml
+C:\Users\07692\source\repos\Project\Project\obj\Debug\Project.csprojAssemblyReference.cache
+C:\Users\07692\source\repos\Project\Project\obj\Debug\Project.Properties.Resources.resources
+C:\Users\07692\source\repos\Project\Project\obj\Debug\Project.csproj.GenerateResource.cache
+C:\Users\07692\source\repos\Project\Project\obj\Debug\Project.csproj.CoreCompileInputs.cache
+C:\Users\07692\source\repos\Project\Project\obj\Debug\Project.csproj.CopyComplete
+C:\Users\07692\source\repos\Project\Project\obj\Debug\Project.exe
+C:\Users\07692\source\repos\Project\Project\obj\Debug\Project.pdb
+C:\Users\07692\source\repos\Project\Project\obj\Debug\Project.Form1.resources
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\dll\x86\OpenCvSharpExtern.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\dll\x86\opencv_ffmpeg410.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\dll\x64\OpenCvSharpExtern.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\dll\x64\opencv_ffmpeg410_64.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\Project.exe.config
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\Project.exe
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\Project.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.Blob.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.Extensions.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.UserInterface.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.xml
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.Blob.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.Blob.xml
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.Extensions.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.Extensions.xml
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.UserInterface.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\bin\Debug\OpenCvSharp.UserInterface.xml
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\obj\Debug\Project.csprojResolveAssemblyReference.cache
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\obj\Debug\Project.Form1.resources
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\obj\Debug\Project.Properties.Resources.resources
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\obj\Debug\Project.csproj.GenerateResource.Cache
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\obj\Debug\Project.exe
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\chapter1\example_1-2_C#\Project\obj\Debug\Project.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\dll\x86\OpenCvSharpExtern.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\dll\x86\opencv_ffmpeg410.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\dll\x64\OpenCvSharpExtern.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\dll\x64\opencv_ffmpeg410_64.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\Project.exe.config
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\Project.exe
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\Project.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.Blob.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.Extensions.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.UserInterface.dll
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.xml
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.Blob.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.Blob.xml
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.Extensions.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.Extensions.xml
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.UserInterface.pdb
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\bin\Debug\OpenCvSharp.UserInterface.xml
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\obj\Debug\Project.csprojResolveAssemblyReference.cache
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\obj\Debug\Project.Form1.resources
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\obj\Debug\Project.Properties.Resources.resources
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\obj\Debug\Project.csproj.GenerateResource.Cache
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\obj\Debug\Project.exe
+C:\Users\07692\Desktop\[예제] C#과 파이썬을 활용한 OpenCV 4 프로그래밍\Additional\C#-GUI\Example\Project\obj\Debug\Project.pdb
