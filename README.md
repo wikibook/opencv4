@@ -1,4 +1,4 @@
-# C#과 파이썬을 활용한 OpenCV4 프로그래밍
+# C#과 파이썬을 활용한 OpenCV4 프로그래밍 (개정판)
 
 ![opencv4-rev.jpg](opencv4-rev.jpg)
 
