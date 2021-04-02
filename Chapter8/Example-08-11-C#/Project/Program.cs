@@ -1,72 +1,81 @@
 ﻿using System;
-using System.Drawing;
+using System.IO;
+using System.Collections.Generic;
 using OpenCvSharp;
-using OpenCvSharp.Extensions;
-using Tesseract;
+using OpenCvSharp.ML;
 
 namespace Project
 {
     class Program
     {
+        static Dictionary<int, string> label_dict = new Dictionary<int, string>()
+        {
+            { 0, "T-shirt/top" },
+            { 1, "Trouser" },
+            { 2, "Pullover" },
+            { 3, "Dress" },
+            { 4, "Coat" },
+            { 5, "Sandal" },
+            { 6, "Shirt" },
+            { 7, "Sneaker" },
+            { 8, "Bag" },
+            { 9, "Ankle boot" }
+        };
+
+        static Tuple<float[], int[]> loadTrainData(string image_path, string label_path, int length)
+        {
+            using (FileStream image_data = new FileStream(image_path, FileMode.Open))
+            using (FileStream label_data = new FileStream(label_path, FileMode.Open))
+            using (BinaryReader image_binary = new BinaryReader(image_data))
+            using (BinaryReader label_binary = new BinaryReader(label_data))
+            {
+                image_binary.ReadBytes(16);
+                label_binary.ReadBytes(8);
+
+                float[] image = new float[length * 784];
+                int[] label = new int[length];
+
+                for (int di = 0; di < length; ++di)
+                {
+                    for (int i = 0; i < 784; ++i)
+                    {
+                        byte img = image_binary.ReadByte();
+                        image[di * 784 + i] = (float)img;
+                    }
+                    byte lb = label_binary.ReadByte();
+                    label[di] = (int)lb;
+                }
+                return new Tuple<float[], int[]>(image, label);
+            }
+        }
+
         static void Main(string[] args)
         {
+            Tuple<float[], int[]> train = loadTrainData("./fashion-mnist/train-images-idx3-ubyte", "./fashion-mnist/train-labels-idx1-ubyte", 60000);
+            Tuple<float[], int[]> test = loadTrainData("./fashion-mnist/t10k-images-idx3-ubyte", "./fashion-mnist/t10k-labels-idx1-ubyte", 10000);
 
-        }
+            Mat train_x = new Mat(60000, 784, MatType.CV_32F, train.Item1);
+            Mat train_y = new Mat(1, 60000, MatType.CV_32S, train.Item2);
+            Mat test_x = new Mat(10000, 784, MatType.CV_32F, test.Item1);
+            Mat test_y = new Mat(1, 10000, MatType.CV_32S, test.Item2);
 
-        static double Angle(OpenCvSharp.Point pt1, OpenCvSharp.Point pt0, OpenCvSharp.Point pt2)
-        {
-            double u1 = pt1.X - pt0.X;
-            double u2 = pt1.Y - pt0.Y;
-            double v1 = pt2.X - pt0.X;
-            double v2 = pt2.Y - pt0.Y;
+            SVM svm = SVM.Create();
+            svm.Type = SVM.Types.CSvc;
+            svm.KernelType = SVM.KernelTypes.Poly;
+            svm.Degree = 3;
+            svm.Gamma = 5.0;
+            svm.C = 3.0;
+            svm.Coef0 = 0; 
+            svm.Train(train_x, SampleTypes.RowSample, train_y);
 
-            return (u1 * v1 + u2 * v2) / (Math.Sqrt(u1 * u1 + u2 * u2) * Math.Sqrt(v1 * v1 + v2 * v2));
-        }
-        
-        public static OpenCvSharp.Point[] Square(Mat src)
-        {
-            Mat[] split = Cv2.Split(src);
-            Mat blur = new Mat();
-            Mat binary = new Mat();
-            OpenCvSharp.Point[] squares = new OpenCvSharp.Point[4];
-            
-            int N = 10;
-            double max = src.Size().Width * src.Size().Height * 0.9;
-            double min = src.Size().Width * src.Size().Height * 0.1;
+            int count = 500;
+            Mat results = new Mat();
+            svm.Predict(test_x[0, count, 0, 784], results);
+            results.ConvertTo(results, MatType.CV_32S);
 
-            for (int channel = 0; channel < 3; channel++)
-            {
-                Cv2.GaussianBlur(split[channel], blur, new OpenCvSharp.Size(5, 5), 1);
-                for (int i = 0; i < N; i++)
-                {
-                    Cv2.Threshold(blur, binary, i * 255 / N, 255, ThresholdTypes.Binary);
-                    
-                    OpenCvSharp.Point[][] contours;
-                    HierarchyIndex[] hierarchy;
-                    Cv2.FindContours(binary, out contours, out hierarchy, RetrievalModes.List, ContourApproximationModes.ApproxTC89KCOS);
-
-                    for (int j = 0; j < contours.Length; j++)
-                    {
-                        double perimeter = Cv2.ArcLength(contours[j], true);
-                        OpenCvSharp.Point[] result = Cv2.ApproxPolyDP(contours[j], perimeter * 0.02, true);
-
-                        double area = Cv2.ContourArea(result);
-                        bool convex = Cv2.IsContourConvex(result);
-
-                        if (result.Length == 4 && area > min && area < max && convex)
-                        {
-                            double cos = 0;
-                            for (int k = 1; k < 5; k++)
-                            {
-                                double t = Math.Abs(Angle(result[(k - 1) % 4], result[k % 4], result[(k + 1) % 4]));
-                                cos = cos > t ? cos : t;
-                            }
-                            if (cos < 0.15) squares = result;
-                        }
-                    }
-                }
-            }
-            return squares;
+            Mat matches = new Mat();
+            Cv2.Compare(results, test_y[0, 1, 0, count].T(), matches, CmpType.EQ);
+            Console.WriteLine((float)Cv2.CountNonZero(matches) / count * 100);
         }
     }
 }

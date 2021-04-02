@@ -7,14 +7,11 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Mat m = Mat.Eye(new Size(3, 3), MatType.CV_64FC3);
-
-            Console.WriteLine(m.At<double>(0, 0));
-            Console.WriteLine(m.At<Vec3d>(0, 0).Item0);
-            Console.WriteLine(m.At<Vec3d>(1, 1).Item1);
-            Console.WriteLine(m.At<Vec3d>(2, 2).Item2);
-            Console.WriteLine(m.At<Point3d>(2, 2));
-            Console.WriteLine(m.At<long>(2, 2));
+            Mat M = new Mat();
+            M.Create(MatType.CV_8UC3, new int[] { 480, 640 });
+            // M.Create(new Size(640, 480), MatType.CV_8UC3);
+            // M.Create(480, 640, MatType.CV_8UC3);
+            M.SetTo(new Scalar(255, 0, 0));
         }
     }
 }

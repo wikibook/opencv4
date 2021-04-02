@@ -1,5 +1,7 @@
 # C#과 파이썬을 활용한 OpenCV4 프로그래밍
 
+![opencv4-rev.jpg](opencv4-rev.jpg)
+
 예제 코드 및 데이터 파일입니다. 책에 기술된 예제들은 각 Chapter 폴더에 포함돼 있습니다.
 
 폴더에는 **Example-장수-예제번호-언어형식**으로 구성돼 있습니다.
@@ -24,28 +26,21 @@ contours, hierachy = cv2.findContours(src, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
 
 운영체제나 내부 코덱에 따라 실행 결과나 과정이 다른 경우, 주석으로 표기했습니다.
 
+<br>
 
-
-
-실전 예제 8장(Chapter8)과 9장(Chatper9)는 순차적으로 프로젝트를 완성해가는 방식입니다.
+머신러닝 예제 8장(Chapter8) 일부와 실전 예제 9장(Chapter9)과 10장(Chatper10)는 순차적으로 프로젝트를 완성해가는 방식입니다.
 그러므로 일부 예제는 아무런 동작을 하지 않거나, 실행되지 않는게 정상입니다.
 책에서는 코드가 추가되는 부분이나 변경되는 부분만 작성하므로, 해당 예제들은 전체적인 코드 진행 방식을 확인하거나 특정 예제에서부터 이어 작성하는 것을 권장합니다.
 
-종속적인 데이터 파일(tessdata, frozen_inference_graph 등)은 결과를 확인할 수 있는 부분에만 추가적으로 포함돼 있습니다.
-처음부터 따라하는 경우, 각 Chapter에 포함된 데이터파일을 활용하시기 바랍니다. 추가적으로 포함된 예제는 다음과 같습니다.
-
-- `Example-08-22-C#`
-- `Example-09-09-Py`
-- `Example-09-10-Py`
-- `Example-09-12-Py`
-- `Example-09-13-Py`
-- `Example-09-17-Py`
+**종속적인 데이터 파일(tessdata, saved_model 등)은 프로젝트 내부에 포함되어 있지 않습니다.**
+저장소의 코드를 직접 실행하는 경우, 각 Chapter에 포함된 데이터 파일을 올바른 경로로 이동하거나 코드의 경로를 수정해 활용하시기 바랍니다.
 
 <br>
 
 ## C# - OpenCvSharp
 
-C# 예제는 `packages.config`를 사용하여 종속성 패키지를 자동적으로 설치합니다.
+C# 예제는 `packages.config`를 사용해 종속성 패키지를 설치합니다.
+자동으로 최신 패키지로 설치하지 않으므로, `NuGet 패키지 관리`에서 사용하려는 버전으로 업데이트 후 활용하실 수 있습니다. 
 예제의 솔루션 파일을 활용하지 않는 경우, 책의 설명과 같이 **NuGet 패키지**를 통해 설치하실 수 있습니다.
 
 Visual Studio에서 `Ctrl + F5` 키로 **디버깅 하지 않고 실행(Start without debugging)** 할 수 있습니다. 
@@ -57,12 +52,20 @@ Visual Studio에서 `Ctrl + F5` 키로 **디버깅 하지 않고 실행(Start wi
 
 ## Python - OpenCV
 
-9장의 `Tensorflow`가 실행되지 않는다면, 사용하는 CPU의 `AVX(Advanced Vector Extensions)` 지원 유무를 확인하시길 바랍니다.
-AVX가 지원되지 않는 CPU라면, Tensorflow 1.5.1 이하 버전을 활용하는 것을 권장합니다.
+10장의 텐서플로가 실행되지 않는다면, 사용하는 CPU의 `AVX(Advanced Vector Extensions)` 지원 유무를 확인하시길 바랍니다.
+GPU를 사용하는 경우에는 [Tensorflow 빌드 페이지](https://www.tensorflow.org/install/source_windows#gpu)에서 설치한 텐서플로의 `cuDNN`과 `CUDA` 버전을 확인하시길 바랍니다.
+GPU로 사용할 때, 메모리 관련 오류가 발생한다면 아래의 메서드를 사용해 텐서플로에서 접근할 수 있는 GPU를 조정합니다.
 
+```
 
-예제 9.10(Example-09-10-Py)은 **라벨 맵 유틸리티 함수**를 활용합니다. [TensorFlow-Object_Detection](https://github.com/tensorflow/models/tree/e6ce8cddd6a8b62922f07b632324903764f14855/research/object_detection)에서 전체 코드를 받을 수 있습니다.
-단, TensorFlow models는 릴리스에 따라 파일의 위치나 코드가 변경돼 오류가 발생하므로 Example-09-10-Py의 라벨 맵 유틸리티 함수 사용을 권장합니다.
+import tensorflow as tf
+physical_device = tf.config.list_physical_devices('GPU')
+tf.config.experimental.set_memory_growth(physical_device[0], enable=True)
+
+```
+
+예제 10.09(Example-10-09-Py)은 **라벨 맵 유틸리티 함수**를 활용합니다. [TensorFlow-Object_Detection](https://github.com/tensorflow/models/tree/e6ce8cddd6a8b62922f07b632324903764f14855/research/object_detection)에서 전체 코드를 받을 수 있습니다.
+단, TensorFlow models는 릴리스에 따라 파일의 위치나 코드가 변경돼 오류가 발생하므로 Example-10-09-Py의 라벨 맵 유틸리티 함수 사용을 권장합니다.
 
 <br>
 
@@ -70,24 +73,6 @@ AVX가 지원되지 않는 CPU라면, Tensorflow 1.5.1 이하 버전을 활용�
 
 `Additional` 폴더에는 **Windows Forms 앱**과 **tkinter**로 GUI를 생성해 OpenCV를 활용한 예제를 확인할 수 있습니다.
 코드 본문에 주석이 작성돼 있습니다.
-
-<br>
-
-## 오류 사항
-
-- **표기 오류**
-    - 예제 3.33 → 예제 3.32 (P.106)
-    - 예제 3.34 → 예제 3.33 (P.110)
-    - 예제 3.35 → 예제 3.34 (P.111)
-    - 예제 3.36 → 예제 3.35 (P.112)
-    - 예제 5.8, 예제 5.9 → 예제 5.9, 예제 5.10 (P.190, P.191, P.192)
-
-
-
- - **코드 변경 사항**
-    - 예제 3.23 : matrix1 → array1
-    - 예제 9.12 : cv2.OPTFLOW_USE_INITIAL_FLOW → cv2.OPTFLOW_FARNEBACK_GAUSSIAN
-    - 예제 9.13 : cv2.OPTFLOW_USE_INITIAL_FLOW → cv2.OPTFLOW_FARNEBACK_GAUSSIAN
 
 <br>
 

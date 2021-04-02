@@ -7,19 +7,17 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            VideoCapture capture = new VideoCapture(0);
+            VideoCapture capture = new VideoCapture("Star.mp4");
             Mat frame = new Mat();
-            capture.Set(CaptureProperty.FrameWidth, 640);
-            capture.Set(CaptureProperty.FrameHeight, 480);
 
             while(true)
             {
-                if (capture.IsOpened() == true)
-                {
-                    capture.Read(frame);
-                    Cv2.ImShow("VideoFrame", frame);
-                    if (Cv2.WaitKey(33) == 'q') break;
-                }
+                if (capture.PosFrames == capture.FrameCount) capture.Open("star.mp4");
+
+                capture.Read(frame);
+                Cv2.ImShow("VideoFrame", frame);
+                    
+                if (Cv2.WaitKey(33) == 'q') break;
             }
 
             capture.Release();

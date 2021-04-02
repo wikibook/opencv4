@@ -1,15 +1,23 @@
 import cv2
+import numpy as np
 
-capture = cv2.VideoCapture("Star.mp4")
+def mouse_event(event, x, y, flags, param):
+    global radius
 
-while True:
-    ret, frame = capture.read()
+    if event == cv2.EVENT_LBUTTONDOWN:
+        cv2.circle(param, (x, y), radius, (255, 0, 0), 2)
+        cv2.imshow("draw", src)
 
-    if(capture.get(cv2.CAP_PROP_POS_FRAMES) == capture.get(cv2.CAP_PROP_FRAME_COUNT)):
-        capture.open("Star.mp4")
+    elif event == cv2.EVENT_MOUSEWHEEL:
+        if flags > 0:
+            radius += 1
+        elif radius > 1:
+            radius -= 1
 
-    cv2.imshow("VideoFrame", frame)
-    if cv2.waitKey(33) == ord('q'): break
+radius = 3
+src = np.full((500, 500, 3), 255, dtype=np.uint8)
 
-capture.release()
+cv2.imshow("draw", src)
+cv2.setMouseCallback("draw", mouse_event, src)
+cv2.waitKey()
 cv2.destroyAllWindows()

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using OpenCvSharp;
-using OpenCvSharp.Util;
 
 namespace Project
 {
@@ -15,7 +15,7 @@ namespace Project
                 for (int x = 0; x < m.Cols; x++)
                 {
                     int offset = (int)m.Step() * y + m.ElemSize() * x;  // offset 지정
-                    Vec3b i = MarshalHelper.PtrToStructure<Vec3b>(m.Ptr(0) + offset + 0);
+                    Vec3f i = Marshal.PtrToStructure<Vec3f>(m.Ptr(0) + offset + 0);
                     Console.WriteLine($"{offset} - ({y}, {x}) : {i.Item0}, {i.Item1}, {i.Item2}");
                 }
             }

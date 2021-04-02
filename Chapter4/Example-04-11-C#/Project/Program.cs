@@ -7,16 +7,22 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Mat img = new Mat(new Size(640, 480), MatType.CV_8UC3);
-            bool save;
+            Mat one = new Mat("one.jpg");
+            Mat two = new Mat("two.jpg");
+            Mat three = new Mat("three.jpg");
+            Mat four = new Mat("four.jpg");
 
-            ImageEncodingParam[] prms = new ImageEncodingParam[] {
-                new ImageEncodingParam(ImwriteFlags.JpegQuality, 100),
-                new ImageEncodingParam(ImwriteFlags.JpegProgressive, 1)
-            };
+            Mat left = new Mat();
+            Mat right = new Mat();
+            Mat dst = new Mat();
 
-            save = Cv2.ImWrite("CV.jpeg", img, prms);
-            Console.WriteLine(save);
+            Cv2.VConcat(new Mat[] { one, three }, left);
+            Cv2.VConcat(new Mat[] { two, four }, right);
+            Cv2.HConcat(new Mat[] { left, right }, dst);
+
+            Cv2.ImShow("dst", dst); 
+            Cv2.WaitKey();
+            Cv2.DestroyAllWindows();
         }
     }
 }

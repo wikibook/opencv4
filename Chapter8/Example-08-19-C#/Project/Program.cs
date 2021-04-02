@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Drawing;
+using System.IO;
 using OpenCvSharp;
-using OpenCvSharp.Extensions;
-using Tesseract;
+using OpenCvSharp.Dnn;
 
 namespace Project
 {
@@ -10,120 +9,38 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Mat src = Cv2.ImRead("card.png");
+            const string config = "tensorflow_model/graph.pbtxt";
+            const string model = "tensorflow_model/frozen_inference_graph.pb";
+            string[] classNames = File.ReadAllLines("tensorflow_model/labelmap.txt");
 
-            OpenCvSharp.Point[] squares = Square(src);
-            Mat square = DrawSquare(src, squares);
-            Mat dst = PerspectiveTransform(src, squares);
-            String texts = OCR(dst);
+            Mat image = new Mat("umbrella.jpg");
+            Net net = Net.ReadNetFromTensorflow(model, config);
+            Mat inputBlob = CvDnn.BlobFromImage(image, 1, new Size(300, 300), swapRB: true, crop: false);
 
-            Cv2.ImShow("dst", dst);
-            Cv2.WaitKey(0);
-            Cv2.DestroyAllWindows();
-        }
+            net.SetInput(inputBlob);
+            Mat outputBlobs = net.Forward();
 
-        static double Angle(OpenCvSharp.Point pt1, OpenCvSharp.Point pt0, OpenCvSharp.Point pt2)
-        {
-            double u1 = pt1.X - pt0.X;
-            double u2 = pt1.Y - pt0.Y;
-            double v1 = pt2.X - pt0.X;
-            double v2 = pt2.Y - pt0.Y;
-
-            return (u1 * v1 + u2 * v2) / (Math.Sqrt(u1 * u1 + u2 * u2) * Math.Sqrt(v1 * v1 + v2 * v2));
-        }
-        
-        public static OpenCvSharp.Point[] Square(Mat src)
-        {
-            Mat[] split = Cv2.Split(src);
-            Mat blur = new Mat();
-            Mat binary = new Mat();
-            OpenCvSharp.Point[] squares = new OpenCvSharp.Point[4];
-            
-            int N = 10;
-            double max = src.Size().Width * src.Size().Height * 0.9;
-            double min = src.Size().Width * src.Size().Height * 0.1;
-
-            for (int channel = 0; channel < 3; channel++)
+            Mat prob = new Mat(outputBlobs.Size(2), outputBlobs.Size(3), MatType.CV_32F, outputBlobs.Ptr(0));
+            for (int p = 0; p < prob.Rows; p++)
             {
-                Cv2.GaussianBlur(split[channel], blur, new OpenCvSharp.Size(5, 5), 1);
-                for (int i = 0; i < N; i++)
+                float confidence = prob.At<float>(p, 2);
+                if (confidence > 0.9)
                 {
-                    Cv2.Threshold(blur, binary, i * 255 / N, 255, ThresholdTypes.Binary);
-                    
-                    OpenCvSharp.Point[][] contours;
-                    HierarchyIndex[] hierarchy;
-                    Cv2.FindContours(binary, out contours, out hierarchy, RetrievalModes.List, ContourApproximationModes.ApproxTC89KCOS);
+                    int classes = (int)prob.At<float>(p, 1);
+                    string label = classNames[classes];
 
-                    for (int j = 0; j < contours.Length; j++)
-                    {
-                        double perimeter = Cv2.ArcLength(contours[j], true);
-                        OpenCvSharp.Point[] result = Cv2.ApproxPolyDP(contours[j], perimeter * 0.02, true);
+                    int x1 = (int)(prob.At<float>(p, 3) * image.Width);
+                    int y1 = (int)(prob.At<float>(p, 4) * image.Height);
+                    int x2 = (int)(prob.At<float>(p, 5) * image.Width);
+                    int y2 = (int)(prob.At<float>(p, 6) * image.Height);
 
-                        double area = Cv2.ContourArea(result);
-                        bool convex = Cv2.IsContourConvex(result);
-
-                        if (result.Length == 4 && area > min && area < max && convex)
-                        {
-                            double cos = 0;
-                            for (int k = 1; k < 5; k++)
-                            {
-                                double t = Math.Abs(Angle(result[(k - 1) % 4], result[k % 4], result[(k + 1) % 4]));
-                                cos = cos > t ? cos : t;
-                            }
-                            if (cos < 0.15) squares = result;
-                        }
-                    }
+                    Cv2.Rectangle(image, new Point(x1, y1), new Point(x2, y2), new Scalar(0, 0, 255));
+                    Cv2.PutText(image, label, new Point(x1, y1), HersheyFonts.HersheyComplex, 1.0, Scalar.Red);
                 }
             }
-            return squares;
-        }
-
-        public static Mat DrawSquare(Mat src, OpenCvSharp.Point[] squares)
-        {
-            Mat drawsquare = src.Clone();
-            OpenCvSharp.Point[][] pts = new OpenCvSharp.Point[][] { squares };
-            Cv2.Polylines(drawsquare, pts, true, Scalar.Yellow, 3, LineTypes.AntiAlias, 0);
-            return drawsquare;
-        }
-
-        public static Mat PerspectiveTransform(Mat src, OpenCvSharp.Point[] squares)
-        {
-            Mat dst = new Mat();
-            Moments moments = Cv2.Moments(squares);
-            double cX = moments.M10 / moments.M00;
-            double cY = moments.M01 / moments.M00;
-
-            Point2f[] src_pts = new Point2f[4];
-            for (int i = 0; i < squares.Length; i++)
-            {
-                if (cX > squares[i].X && cY > squares[i].Y) src_pts[0] = squares[i];
-                if (cX > squares[i].X && cY < squares[i].Y) src_pts[1] = squares[i];
-                if (cX < squares[i].X && cY > squares[i].Y) src_pts[2] = squares[i];
-                if (cX < squares[i].X && cY < squares[i].Y) src_pts[3] = squares[i];
-            }
-
-            Point2f[] dst_pts = new Point2f[4]
-            {
-                new Point2f(0, 0),
-                new Point2f(0, src.Height),
-                new Point2f(src.Width, 0),
-                new Point2f(src.Width, src.Height)
-            };
-
-            Mat matrix = Cv2.GetPerspectiveTransform(src_pts, dst_pts);
-            Cv2.WarpPerspective(src, dst, matrix, new OpenCvSharp.Size(src.Width, src.Height));
-            return dst;
-        }
-
-        public static string OCR(Mat src)
-        {
-            Bitmap bitmap = src.ToBitmap();
-            TesseractEngine ocr = new TesseractEngine("../../../tessdata", "eng", EngineMode.TesseractAndCube);
-            Page texts = ocr.Process(bitmap);
-
-            string sentence = texts.GetText();
-            Console.WriteLine(sentence);
-            return sentence;
+            Cv2.ImShow("image", image);
+            Cv2.WaitKey();
+            Cv2.DestroyAllWindows();
         }
     }
 }
